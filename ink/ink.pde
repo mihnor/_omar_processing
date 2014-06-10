@@ -32,21 +32,6 @@ void draw() {
   cursor.display();
   cursor.update();
   
-  
-  for (int i = 0; i < movers.size(); i++) {
-  
-    Mover movers_ = movers.get(i);
-
-//    friction(movers_);
-
-    // Update and display
-//    movers_.update();
-//    movers_.display();
-//    movers_.checkEdges();
-  }
-
-  ellipse(baseBlow.x, baseBlow.y, 30, 30);
-}
 
 void mousePressed() {
 //  blow();

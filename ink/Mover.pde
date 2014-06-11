@@ -90,6 +90,28 @@ class Mover {
   }
 
   void display() {
+    
+    float cx1, cx2, cy1, cy2;
+    cx1 = 0.0;
+    cy1 = 0.0;
+    cx2 = 0.0;
+    cy2 = 0.0;
+    
+    stroke(0,150);
+//    strokeWeight(noise(100,200));
+    strokeWeight(random(0.1,2));
+    //fill(127, 200);
+//    line(prevLocation.x, prevLocation.y, location.x, location.y);
+    noFill();
+    bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(cx1) +random(-1,1), prevLocation.y + cy1  + noise(0,2), location.x, location.y, location.x + cx2 + noise(0,20)  + random(-1,1), location.y + cy2 + noise(0,20)  + random(0,1)); 
+//    bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(prevLocation.x), prevLocation.y + cy1  + noise(prevLocation.y), location.x, location.y, location.x + cx2 + noise(location.x), location.y + cy2 + noise(location.y));
+
+
+   // ellipse(location.x, location.y, mass, mass);
+    //println( prevLocation.y +" , " +  location.y);
+  }
+
+  void displayDrag() {
 
     float cx1, cx2, cy1, cy2;
     cx1 = 0.0;
@@ -99,11 +121,13 @@ class Mover {
 
 
     //    strokeWeight(noise(100,200));
+    
     if ( !this.isDead() && this.getActive()) {
-      strokeWeight(map(this.pixelRun, 0, 500, 5, 0.1));
+    
+      strokeWeight(map(this.pixelRun, 0, 500, 4, 0.1));
       stroke(0, map(this.pixelRun, 0, 300, 20, 0));
       fill(0, map(this.pixelRun, 0, 300, 80, 10));
-//      ellipse(this.location.x, this.location.y,2,2);
+      ellipse(this.location.x, this.location.y,2,2);
       line(this.prevLocation.x, this.prevLocation.y, this.location.x, this.location.y);
 //      bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(prevLocation.x), prevLocation.y + cy1  + noise(prevLocation.y), location.x, location.y, location.x + cx2 + noise(location.x), location.y + cy2 + noise(location.y));
     }

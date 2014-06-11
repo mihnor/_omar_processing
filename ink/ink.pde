@@ -26,7 +26,7 @@ void setup() {
   tint(255, 20);
   createDots("edge.jpg");
   //  getJson();
-  smooth();
+  noSmooth();
   baseBlow = new PVector(width/2, height);
 }
 
@@ -51,7 +51,14 @@ void draw() {
     //    Mover movers_ = movers.get(i);
     //    movers_.display();
 
-    movers.get(i).display();
+//    friction(movers.get(i));
+//
+//    movers.get(i).update();
+//    movers.get(i).display();
+//    movers.get(i).checkEdges();
+    
+
+    movers.get(i).displayDrag();
     cursor.update();
   }
 }
@@ -88,7 +95,9 @@ void blow() {
 
 void mousePressed() {
 
+//  blow();
   cursor.clicked(movers);
+  
 }
 
 void mouseDragged() {

@@ -1,21 +1,17 @@
 // todo
 // Resolver o bug do atrito
 
-/* @pjs preload="pequenosreparos.jpg"; */
-/* @pjs preload="edge.jpg"; */
-
 PVector baseBlow;
 PImage fundo; 
 PImage edgeImage;
 
 Finger cursor;
-JSONArray jsonMovers;
 
 ArrayList<Mover> movers;
 
 void setup() {
   size(525, 700);
-  //  background(255);
+//  background(255);
 
   cursor = new Finger(30);
   movers = new ArrayList<Mover>();
@@ -23,43 +19,45 @@ void setup() {
   fundo = loadImage("pequenosreparos.jpg");
 
   image(fundo, 0, 0);
-  tint(255, 20);
+
   createDots("edge.jpg");
-  //  getJson();
   smooth();
   baseBlow = new PVector(width/2, height);
 }
 
-
-void getJson() {
-  // jsonMovers = new JSONArray(movers);
-}
-
-
-
 void draw() {
-  cursor.radius = 10;
-
-  //  fill(255,20);
-  //  rect(0,0,width,height);
-
-  //  cursor.display();
-
-
+//  fill(255,10);
+//  rect(0,0,width,height);
+  image(fundo, 0, 0);
+  cursor.display();
+  cursor.update();
+  
+  
   for (int i = 0; i < movers.size(); i++) {
+  
+    Mover movers_ = movers.get(i);
 
-    //    Mover movers_ = movers.get(i);
-    //    movers_.display();
+//    friction(movers_);
 
-    movers.get(i).display();
-    cursor.update();
+    // Update and display
+//    movers_.update();
+//    movers_.display();
+//    movers_.checkEdges();
   }
+
+  ellipse(baseBlow.x, baseBlow.y, 30, 30);
 }
 
-//void mousePressed() {
-////  blow();
-//}
+void mousePressed() {
+//  blow();
+}
 
+
+void drag(){
+ 
+  
+  
+}
 
 void blow() {
   for (int i = 0; i < movers.size(); i++) {
@@ -69,10 +67,10 @@ void blow() {
     float magBlowX;
 
     if (actualLoc.x < width/2) {
-      magBlowX = -0.5 *  mag(baseBlow.x, actualLoc.x);
+     magBlowX = -0.5 *  mag(baseBlow.x, actualLoc.x);
     }
     else {
-      magBlowX = 0.5* mag(baseBlow.x, actualLoc.x);
+     magBlowX = 0.5* mag(baseBlow.x, actualLoc.x);
     }
     float magBlowY = mag(baseBlow.y, actualLoc.y);
 
@@ -86,24 +84,9 @@ void blow() {
   }
 }
 
-void mousePressed() {
-
+void mouseClicked(){
+ 
   cursor.clicked(movers);
-}
-
-void mouseDragged() {
-
-  cursor.drag();
-}
-
-void mouseReleased() {
-
-  cursor.moverIds.clear();
-}
-
-void keyPressed() {
-  if (key=='s') {
-    saveFrame("img/"+frameCount+"omar.png");
-  }
+  
 }
 

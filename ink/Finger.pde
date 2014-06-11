@@ -12,7 +12,7 @@ class Finger {
 
     this.radius = radius_;
     pos = new PVector(mouseX, mouseY);
-    moverIds = new ArrayList<Integer>();
+    moverIds = new ArrayList();
   };
 
   void clicked(ArrayList<Mover> mvs) {
@@ -21,30 +21,12 @@ class Finger {
       
       Mover m = mvs.get(i);
       if(m.checkFinger(this)){
-//        m.isActive = true;
-        moverIds.add(i); 
-      }else{
-//        m.isActive = false;
+       moverIds.add(i); 
       }
       
     }
      println(moverIds);
   }
-  
-  void drag(){
- 
-
-    
-    for(int i = 0 ; i < moverIds.size(); i++){
-     
-       int id = (Integer)this.moverIds.get(i);
-       
-       
-       movers.get(id).updateDrag(mouseX - pmouseX, mouseY - pmouseY);
-       
-    }
-    
-  };
   
   void update(){
     

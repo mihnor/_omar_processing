@@ -83,12 +83,6 @@ class Mover {
     }
   }
   
-   boolean checkFinger(Finger f){
-     
-     
-      return (this.location.dist(f.pos) < f.radius);
-     
-  }
   
 }
 

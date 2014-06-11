@@ -5,15 +5,15 @@ PVector baseBlow;
 PImage fundo; 
 PImage edgeImage;
 
-Finger cursor;
+//Finger cursor;
 
 ArrayList<Mover> movers;
 
 void setup() {
   size(525, 700);
-//  background(255);
+  //  background(255);
 
-  cursor = new Finger(30);
+  //  cursor = new Finger(30);
   movers = new ArrayList<Mover>();
 
   fundo = loadImage("pequenosreparos.jpg");
@@ -26,37 +26,34 @@ void setup() {
 }
 
 void draw() {
-//  fill(255,10);
-//  rect(0,0,width,height);
-  image(fundo, 0, 0);
-  cursor.display();
-  cursor.update();
-  
-  
+  //  fill(255,10);
+  //  rect(0,0,width,height);
+//  image(fundo, 0, 0);
+  //  cursor.display();
+  //  cursor.update();
+
+
   for (int i = 0; i < movers.size(); i++) {
-  
+
     Mover movers_ = movers.get(i);
 
-//    friction(movers_);
+    friction(movers_);
 
     // Update and display
-//    movers_.update();
-//    movers_.display();
-//    movers_.checkEdges();
+    movers_.update();
+    movers_.display();
+    movers_.checkEdges();
   }
 
   ellipse(baseBlow.x, baseBlow.y, 30, 30);
 }
 
 void mousePressed() {
-//  blow();
+  //  blow();
 }
 
 
-void drag(){
- 
-  
-  
+void drag() {
 }
 
 void blow() {
@@ -67,10 +64,10 @@ void blow() {
     float magBlowX;
 
     if (actualLoc.x < width/2) {
-     magBlowX = -0.5 *  mag(baseBlow.x, actualLoc.x);
+      magBlowX = -0.5 *  mag(baseBlow.x, actualLoc.x);
     }
     else {
-     magBlowX = 0.5* mag(baseBlow.x, actualLoc.x);
+      magBlowX = 0.5* mag(baseBlow.x, actualLoc.x);
     }
     float magBlowY = mag(baseBlow.y, actualLoc.y);
 
@@ -84,9 +81,15 @@ void blow() {
   }
 }
 
-void mouseClicked(){
- 
-  cursor.clicked(movers);
-  
+void mouseClicked() {
+
+  //  cursor.clicked(movers);
+  blow();
+}
+
+void keyPressed(){
+ if(key=='s'){
+  saveFrame("../img/"+frameCount+"omarBlow.png");
+ } 
 }
 

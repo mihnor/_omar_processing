@@ -10,6 +10,11 @@ class Mover {
   PVector velocity;
   PVector acceleration;
 
+  boolean isDead;
+  float pixelRun;
+
+  boolean isActive = false;
+
   // Mass is tied to size
   float mass;
 
@@ -19,6 +24,7 @@ class Mover {
     prevLocation = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
+    this.isActive = false;
   }
 
   // Newton's 2nd law: F = M * A
@@ -30,23 +36,28 @@ class Mover {
     acceleration.add(f);
   }
 
-  void updateDrag(int mX, int mY) {
-//    this.location.set(mX, mY);
+  boolean getActive() {
+    return this.isActive;
+  }
 
-//    float distVecX = dist(prevLocation.x, mX);
-//    float distVecX = dist(prevLocation.y, mY);
-    
-    
-    
-    
-    this.location.x =  mX + prevLocation.x;
-    this.location.y =  mY + prevLocation.y;
-//    this.location.y =  mY;
-//    
-//    this.location.x = this.prevLocation.x - mX;
-//    this.location.y = this.prevLocation.y - mY;
-//    
+  void updateDrag(int mX, int mY) {
+    //    this.location.set(mX, mY);
+    this.isActive = true;
+    //    float distVecX = dist(prevLocation.x, mX);
+    //    float distVecX = dist(prevLocation.y, mY);
     this.prevLocation = this.location;
+
+
+    this.pixelRun += sqrt(pow(mX, 2) + pow(mY, 2));
+
+
+    this.location.x =  mX + this.prevLocation.x;
+    this.location.y =  mY + this.prevLocation.y;
+    //    this.location.y =  mY;
+    //    
+    //    this.location.x = this.prevLocation.x - mX;
+    //    this.location.y = this.prevLocation.y - mY;
+    //
   }
 
   void update() {
@@ -62,14 +73,21 @@ class Mover {
   }
 
   // Draw Mover
-//  float noiseWalker(float pos) {
-//
-//
-//    return map(noise(1), 0, 1, 0, 1);
-//  }
+  //  float noiseWalker(float pos) {
+  //
+  //
+  //    return map(noise(1), 0, 1, 0, 1);
+  //  }
 
 
-  
+  boolean isDead() {
+    if (this.pixelRun < 500) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 
   void display() {
 
@@ -79,14 +97,21 @@ class Mover {
     cx2 = 0.0;
     cy2 = 0.0;
 
-    stroke(0, 150);
+
     //    strokeWeight(noise(100,200));
-    strokeWeight(random(0.1, 4));
+    if ( !this.isDead() && this.getActive()) {
+      strokeWeight(map(this.pixelRun, 0, 500, 2, 0.1));
+      stroke(0, map(this.pixelRun, 0, 300, 80, 10));
+      fill(0, map(this.pixelRun, 0, 300, 80, 10));
+      ellipse(this.location.x, this.location.y,random(4,8),random(4,8));
+      line(this.prevLocation.x, this.prevLocation.y, this.location.x, this.location.y);
+//      bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(prevLocation.x), prevLocation.y + cy1  + noise(prevLocation.y), location.x, location.y, location.x + cx2 + noise(location.x), location.y + cy2 + noise(location.y));
+    }
+    //    strokeWeight(random(0.1, 4));
     //fill(127, 200);
-    line(prevLocation.x, prevLocation.y, location.x, location.y);
-    noFill();
-//    bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(cx1) +random(-1, 1), prevLocation.y + cy1  + noise(0, 2), location.x, location.y, location.x + cx2 + noise(0, 20)  + random(-1, 1), location.y + cy2 + noise(0, 20)  + random(0, 1)); 
-    //    bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(prevLocation.x), prevLocation.y + cy1  + noise(prevLocation.y), location.x, location.y, location.x + cx2 + noise(location.x), location.y + cy2 + noise(location.y));
+    
+    //    bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(cx1) +random(-1, 1), prevLocation.y + cy1  + noise(0, 2), location.x, location.y, location.x + cx2 + noise(0, 20)  + random(-1, 1), location.y + cy2 + noise(0, 20)  + random(0, 1)); 
+        
 
 
     // ellipse(location.x, location.y, mass, mass);

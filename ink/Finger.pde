@@ -21,7 +21,10 @@ class Finger {
       
       Mover m = mvs.get(i);
       if(m.checkFinger(this)){
-       moverIds.add(i); 
+//        m.isActive = true;
+        moverIds.add(i); 
+      }else{
+//        m.isActive = false;
       }
       
     }
@@ -36,8 +39,9 @@ class Finger {
      
        int id = (Integer)this.moverIds.get(i);
        
+       
        movers.get(id).updateDrag(mouseX - pmouseX, mouseY - pmouseY);
-      
+       
     }
     
   };

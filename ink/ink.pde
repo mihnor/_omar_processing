@@ -13,7 +13,7 @@ void setup() {
   size(525, 700);
 //  background(255);
 
-  cursor = new Finger(10);
+  cursor = new Finger(20);
   movers = new ArrayList<Mover>();
 
   fundo = loadImage("pequenosreparos.jpg");
@@ -26,16 +26,20 @@ void setup() {
 }
 
 void draw() {
+  cursor.radius = 20;
 //  fill(255,10);
 //  rect(0,0,width,height);
 //  image(fundo, 0, 0);
 //  cursor.display();
-  cursor.update();
+  
   
   for (int i = 0; i < movers.size(); i++) {
   
-    Mover movers_ = movers.get(i);
-    movers_.display();
+//    Mover movers_ = movers.get(i);
+//    movers_.display();
+    
+    movers.get(i).display();
+    cursor.update();
     
   }
 }

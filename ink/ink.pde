@@ -13,7 +13,7 @@ void setup() {
   size(525, 700);
 //  background(255);
 
-  cursor = new Finger(30);
+  cursor = new Finger(10);
   movers = new ArrayList<Mover>();
 
   fundo = loadImage("pequenosreparos.jpg");
@@ -28,36 +28,22 @@ void setup() {
 void draw() {
 //  fill(255,10);
 //  rect(0,0,width,height);
-  image(fundo, 0, 0);
-  cursor.display();
+//  image(fundo, 0, 0);
+//  cursor.display();
   cursor.update();
-  
   
   for (int i = 0; i < movers.size(); i++) {
   
     Mover movers_ = movers.get(i);
-
-//    friction(movers_);
-
-    // Update and display
-//    movers_.update();
-//    movers_.display();
-//    movers_.checkEdges();
+    movers_.display();
+    
   }
-
-  ellipse(baseBlow.x, baseBlow.y, 30, 30);
 }
 
-void mousePressed() {
-//  blow();
-}
+//void mousePressed() {
+////  blow();
+//}
 
-
-void drag(){
- 
-  
-  
-}
 
 void blow() {
   for (int i = 0; i < movers.size(); i++) {
@@ -84,9 +70,20 @@ void blow() {
   }
 }
 
-void mouseClicked(){
+void mousePressed(){
  
   cursor.clicked(movers);
   
 }
 
+void mouseDragged(){
+ 
+ cursor.drag();
+  
+}
+
+void mouseReleased(){
+ 
+ cursor.moverIds.clear();
+  
+}

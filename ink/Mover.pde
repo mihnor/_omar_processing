@@ -81,7 +81,7 @@ class Mover {
 
     stroke(0, 150);
     //    strokeWeight(noise(100,200));
-    strokeWeight(random(0.1, 4));
+    strokeWeight(random(0.1, 2));
     //fill(127, 200);
     line(prevLocation.x, prevLocation.y, location.x, location.y);
     noFill();

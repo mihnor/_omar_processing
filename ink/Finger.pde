@@ -3,7 +3,7 @@
 class Finger {
 
   
-  ArrayList moverIds;
+  IntList moverIds;
   float radius;
   PVector pos;
   boolean hide;
@@ -12,7 +12,7 @@ class Finger {
 
     this.radius = radius_;
     pos = new PVector(mouseX, mouseY);
-    moverIds = new ArrayList<Integer>();
+    moverIds = new IntList();
   };
 
   void clicked(ArrayList<Mover> mvs) {
@@ -21,7 +21,7 @@ class Finger {
       
       Mover m = mvs.get(i);
       if(m.checkFinger(this)){
-       moverIds.add(i); 
+       moverIds.append(i); 
       }
       
     }
@@ -34,7 +34,7 @@ class Finger {
     
     for(int i = 0 ; i < moverIds.size(); i++){
      
-       int id = (Integer)this.moverIds.get(i);
+       int id = int(this.moverIds.get(i));
        
        movers.get(id).updateDrag(mouseX - pmouseX, mouseY - pmouseY);
       

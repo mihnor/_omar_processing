@@ -100,10 +100,10 @@ class Mover {
 
     //    strokeWeight(noise(100,200));
     if ( !this.isDead() && this.getActive()) {
-      strokeWeight(map(this.pixelRun, 0, 500, 2, 0.1));
-      stroke(0, map(this.pixelRun, 0, 300, 80, 10));
+      strokeWeight(map(this.pixelRun, 0, 500, 5, 0.1));
+      stroke(0, map(this.pixelRun, 0, 300, 20, 0));
       fill(0, map(this.pixelRun, 0, 300, 80, 10));
-      ellipse(this.location.x, this.location.y,random(4,8),random(4,8));
+//      ellipse(this.location.x, this.location.y,2,2);
       line(this.prevLocation.x, this.prevLocation.y, this.location.x, this.location.y);
 //      bezier(prevLocation.x, prevLocation.y, prevLocation.x + cx1 + noise(prevLocation.x), prevLocation.y + cy1  + noise(prevLocation.y), location.x, location.y, location.x + cx2 + noise(location.x), location.y + cy2 + noise(location.y));
     }

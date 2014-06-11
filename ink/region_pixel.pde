@@ -2,7 +2,7 @@ void createDots(String fileName_) {
   edgeImage = loadImage(fileName_);
   int dimension = edgeImage.width * edgeImage.height;
   edgeImage.loadPixels();
-  float threshold = 200;
+  float threshold = 150;
 
   for (int ix = 0; ix < edgeImage.width; ix++) {
     for (int iy = 0; iy < edgeImage.height; iy++) {
@@ -12,10 +12,14 @@ void createDots(String fileName_) {
         //Add the X and Y coordinates to the list
         
         
-        movers.add(new Mover(random(0.1,2), ix, iy));
+        movers.add(new Mover(random(1,2), ix, iy));
           
     }
     }
   }
+  
+  
 }
+
+
 
